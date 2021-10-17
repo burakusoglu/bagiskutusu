@@ -8,7 +8,7 @@ if (post('giris')) {
   if (!$username || !$password) {
       $error = "Boş alan bırakmayınız.";
   }else{
-      if(reCaptcha($response,"6LfDsegUAAAAAN8VRPO0mb9W4UM2cOmWsWD0YHYm")){
+      if(reCaptcha($response,"")){
           $control = $db->select('society') 
           ->where('societyMail',$username)
           ->run(true);
