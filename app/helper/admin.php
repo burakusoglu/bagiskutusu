@@ -30,7 +30,7 @@ function passControl($password){
 /* Google ReCaptcha Function */
 function reCaptcha($response,$secret){
   $remoteip=$_SERVER['REMOTE_ADDR'];
-  $captcha=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip");
+  $captcha=file_get_contents("");
   $result=json_decode($captcha);
   $data = false;
          if($result->success==1){
@@ -47,13 +47,13 @@ function _token($word="",$time = true){
   if($time==false){
     return md5(md5(md5(md5("atilim".$word))));
   }else{
-    return md5(md5(md5(md5(date('d.m.Y.H').$word))));
+    return md5(md5(md5(md5(date('').$word))));
   }
   
 }
 //Admin şifre iişlemleri
 // Hash function 
-// Exp. _pass("flatron2","destek.bagiskutusu@gmail.com","verify",$db);
+
 function _pass($pass,$email,$passType="pass",$db)
 {
   if($email){
@@ -65,7 +65,7 @@ function _pass($pass,$email,$passType="pass",$db)
       ->where('societyID',$passMailControl['societyID'])
       ->run(true);
       if($saltControl){
-         $hash = $saltControl['saltSociety'].$pass."atilimuni";
+         $hash = $saltControl['saltSociety'].$pass."";
         if($passType == "verify"){
           /*Password_verify php kendi fonksiyonudur */
           return password_verify($hash,$passMailControl['societyPass']);
@@ -88,7 +88,7 @@ function _passUser($pass,$email,$passType="pass",$db)
       ->where('userID',$passMailControl['userID'])
       ->run(true);
       if($saltControl){
-         $hash = $saltControl['salt'].$pass."atilimuni";
+         $hash = $saltControl['salt'].$pass."";
         if($passType == "verify"){
           /*Password_verify php kendi fonksiyonudur */
           return password_verify($hash,$passMailControl['userPass']);
@@ -111,8 +111,8 @@ function _passUser($pass,$email,$passType="pass",$db)
 //   $mail->Host = 'smtp.gmail.com';
 //   $mail->Port = 587;
 //   $mail->SMTPSecure = 'tls';
-//   $mail->Username = 'destek.bagiskutusu@gmail.com';
-//   $mail->Password = 'atilim06.';
+//   $mail->Username = '';
+//   $mail->Password = '';
 //   $mail->SetFrom($mail->Username, 'Bağış Kutusu Yönetim');
 //   $mail->AddAddress($addMail, $addFullName);
 //   $mail->CharSet = 'UTF-8';
