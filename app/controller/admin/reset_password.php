@@ -7,7 +7,7 @@ if (post('resetPassword')) {
   if (!$username) {
       $error = "Boş Alan Bırakmayınız.";
   }else{
-     if(reCaptcha($response,"6LfDsegUAAAAAN8VRPO0mb9W4UM2cOmWsWD0YHYm")){
+     if(reCaptcha($response,"")){
           $control = $db->select('society') 
           ->where('societyMail',$username)
           ->run(true);
